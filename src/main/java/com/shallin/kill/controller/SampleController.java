@@ -1,6 +1,7 @@
 package com.shallin.kill.controller;
 
 import com.shallin.kill.entity.User;
+import com.shallin.kill.redis.RedisService;
 import com.shallin.kill.result.CodeMsg;
 import com.shallin.kill.result.Result;
 import com.shallin.kill.service.UserService;
@@ -18,23 +19,19 @@ public class SampleController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Hello World!";
-    }
+    @Autowired
+    RedisService redisService;
+
     @RequestMapping("/hello")
     @ResponseBody
     public Result<String> hello() {
-        return Result.success("hello,imooc");
-        // return new Result(0, "success", "hello,imooc");
+        return Result.success("hello,shallin");
     }
 
     @RequestMapping("/helloError")
     @ResponseBody
     public Result<String> helloError() {
         return Result.error(CodeMsg.SERVER_ERROR);
-        //return new Result(500102, "XXX");
     }
 
     @RequestMapping("/thymeleaf")
@@ -43,10 +40,10 @@ public class SampleController {
         return "hello";
     }
 
-    @RequestMapping("/db/get")
+    @RequestMapping("/redis/get")
     @ResponseBody
-    public Result<User> dbGet(){
-        User user = userService.getById(1);
-        return Result.success(user);
+    public Result<Long> redisGet(){
+        Long v1 = redisService.get("key1",Long.class);
+        return Result.success(v1);
     }
 }

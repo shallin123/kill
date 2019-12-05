@@ -10,6 +10,6 @@ public interface UserDao {
     /**
      * 查找
      * */
-    @Select("select * from User where id = #{id}")
+    @Select("select * from user where id = #{id}")
     public User getById(@Param("id") int id);
 }

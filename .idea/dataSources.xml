@@ -4,14 +4,26 @@
     <data-source source="LOCAL" name="@localhost" uuid="b96b9ade-4adb-4397-8f31-b787742b6bdf">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="@222.20.76.112" uuid="32c6a7df-0806-474c-9005-448d158f5978">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="MySQL - @222.20.76.112" uuid="32c6a7df-0806-474c-9005-448d158f5978">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://222.20.76.112:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="@180.76.140.175" uuid="2160c2b0-d63f-4d53-ba15-7c1987c3deb6">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://180.76.140.175:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="@121.36.51.19" uuid="f31d72d6-cfb6-4b7d-bfed-b6931670680a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://121.36.51.19:3306</jdbc-url>
     </data-source>
   </component>
 </project>
