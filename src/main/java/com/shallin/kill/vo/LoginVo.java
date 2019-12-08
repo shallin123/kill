@@ -12,7 +12,7 @@ public class LoginVo {
     private String mobile;
 
     @NotNull
-    @Length(min = 6)
+    @Length(min = 32)
     private String password;
 
     public String getPassword() {
@@ -33,9 +33,6 @@ public class LoginVo {
 
     @Override
     public String toString() {
-        return "LoginVo{" +
-                "mobile='" + mobile + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "LoginVo [mobile=" + mobile + ", password=" + password + "]";
     }
 }
