@@ -2,7 +2,6 @@ package com.shallin.kill.service;
 
 import com.shallin.kill.dao.MiaoshaDao;
 import com.shallin.kill.entity.MiaoshaUser;
-import com.shallin.kill.entity.User;
 import com.shallin.kill.exception.GlobalException;
 import com.shallin.kill.redis.MiaoshaUserKey;
 import com.shallin.kill.redis.RedisService;
@@ -33,15 +32,15 @@ public class MiaoshaUserService {
     public MiaoshaUser getById(long id) {
         return miaoshaDao.getById(id);
     }
-    public MiaoshaUser getByToken(String token) {
+    public MiaoshaUser getByToken(HttpServletResponse response,String token) {
         if(StringUtils.isEmpty(token)) {
             return null;
         }
         MiaoshaUser miaoshaUser = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
         //延长有效期
-//        if(miaoshaUser != null) {
-//            addCookie(response, token, miaoshaUser);
-//        }
+        if(miaoshaUser != null) {
+            addCookie(response, token, miaoshaUser);
+        }
         return miaoshaUser;
     }
     public boolean login(HttpServletResponse response,LoginVo loginVo){
