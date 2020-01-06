@@ -1,17 +1,34 @@
 package com.shallin.kill.service;
 
-import com.shallin.kill.dao.GoodsDao;
-import com.shallin.kill.dao.UserDao;
-import com.shallin.kill.entity.Goods;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author shallin
- */
+import com.shallin.kill.dao.GoodsDao;
+import com.shallin.kill.entity.MiaoshaGoods;
+import com.shallin.kill.vo.GoodsVo;
+
 @Service
 public class GoodsService {
-   @Autowired
-   GoodsDao goodsDao;
+	
+	@Autowired
+	GoodsDao goodsDao;
+	
+	public List<GoodsVo> listGoodsVo(){
+		return goodsDao.listGoodsVo();
+	}
 
+	public GoodsVo getGoodsVoByGoodsId(long goodsId) {
+		return goodsDao.getGoodsVoByGoodsId(goodsId);
+	}
+
+	public void reduceStock(GoodsVo goods) {
+		MiaoshaGoods g = new MiaoshaGoods();
+		g.setGoodsId(goods.getId());
+		goodsDao.reduceStock(g);
+	}
+	
+	
+	
 }

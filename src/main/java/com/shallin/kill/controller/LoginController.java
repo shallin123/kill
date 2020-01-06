@@ -1,19 +1,19 @@
 package com.shallin.kill.controller;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import com.shallin.kill.redis.RedisService;
-import com.shallin.kill.result.Result;
 import com.shallin.kill.service.MiaoshaUserService;
 import com.shallin.kill.util.MD5Util;
-import com.shallin.kill.vo.LoginVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import com.shallin.kill.result.Result;
+import com.shallin.kill.vo.LoginVo;
 
 @Controller
 @RequestMapping("/login")
@@ -34,12 +34,11 @@ public class LoginController {
 
     @RequestMapping("/do_login")
     @ResponseBody
-    public Result<Boolean> doLogin(HttpServletResponse response,@Valid LoginVo loginVo) {
+    public Result<Boolean> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {
         log.info(loginVo.toString());
-        log.info(miaoshaUserService.getById(Long.parseLong(loginVo.getMobile())).getPassword());
-        log.info(miaoshaUserService.getById(Long.parseLong(loginVo.getMobile())).getSalt());
+        //登录
         log.info(MD5Util.formPassToDBPass(loginVo.getPassword(),miaoshaUserService.getById(Long.parseLong(loginVo.getMobile())).getSalt()));
-        miaoshaUserService.login(response,loginVo);
+        miaoshaUserService.login(response, loginVo);
         return Result.success(true);
     }
 }
