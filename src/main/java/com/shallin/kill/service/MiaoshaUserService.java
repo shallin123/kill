@@ -3,6 +3,7 @@ package com.shallin.kill.service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import com.shallin.kill.result.CodeMsg;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import com.shallin.kill.entity.MiaoshaUser;
 import com.shallin.kill.exception.GlobalException;
 import com.shallin.kill.redis.MiaoshaUserKey;
 import com.shallin.kill.redis.RedisService;
-import com.shallin.kill.result.CodeMsg;
 import com.shallin.kill.util.MD5Util;
 import com.shallin.kill.util.UUIDUtil;
 import com.shallin.kill.vo.LoginVo;

@@ -1,5 +1,8 @@
 package com.shallin.kill.result;
 
+/**
+ * @author shallin
+ */
 public class Result<T> {
 	private int code;
 	private String msg;

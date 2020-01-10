@@ -1,5 +1,8 @@
 package com.shallin.kill.redis;
 
+/**
+ * @author shallin
+ */
 public abstract class BasePrefix implements KeyPrefix{
 	
 	private int expireSeconds;

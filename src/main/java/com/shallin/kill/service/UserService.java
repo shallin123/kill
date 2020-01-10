@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.shallin.kill.dao.UserDao;
 import com.shallin.kill.entity.User;
 
+/**
+ * @author shallin
+ */
 @Service
 public class UserService {
 	

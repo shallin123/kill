@@ -8,6 +8,9 @@ import com.alibaba.fastjson.JSON;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+/**
+ * @author shallin
+ */
 @Service
 public class RedisService {
 	

@@ -2,6 +2,9 @@ package com.shallin.kill.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+/**
+ * @author shallin
+ */
 public class MD5Util {
 
     public static String md5(String src) {

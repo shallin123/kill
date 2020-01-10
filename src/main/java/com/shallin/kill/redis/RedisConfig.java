@@ -3,6 +3,9 @@ package com.shallin.kill.redis;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author shallin
+ */
 @Component
 @ConfigurationProperties(prefix="redis")
 public class RedisConfig {

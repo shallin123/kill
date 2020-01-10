@@ -10,6 +10,9 @@ import org.apache.ibatis.annotations.Update;
 import com.shallin.kill.entity.MiaoshaGoods;
 import com.shallin.kill.vo.GoodsVo;
 
+/**
+ * @author shallin
+ */
 @Mapper
 public interface GoodsDao {
 	

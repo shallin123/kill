@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+/**
+ * @author shallin
+ */
 @Service
 public class RedisPoolFactory {
 
@@ -14,7 +17,7 @@ public class RedisPoolFactory {
 	RedisConfig redisConfig;
 	
 	@Bean
-	public JedisPool JedisPoolFactory() {
+	public JedisPool jedisPoolFactory() {
 		JedisPoolConfig poolConfig = new JedisPoolConfig();
 		poolConfig.setMaxIdle(redisConfig.getPoolMaxIdle());
 		poolConfig.setMaxTotal(redisConfig.getPoolMaxTotal());

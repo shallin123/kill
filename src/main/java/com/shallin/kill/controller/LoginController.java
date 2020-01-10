@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shallin.kill.result.Result;
 import com.shallin.kill.vo.LoginVo;
 
+/**
+ * @author shallin
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {

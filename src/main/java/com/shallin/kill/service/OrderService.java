@@ -12,6 +12,9 @@ import com.shallin.kill.entity.MiaoshaUser;
 import com.shallin.kill.entity.OrderInfo;
 import com.shallin.kill.vo.GoodsVo;
 
+/**
+ * @author shallin
+ */
 @Service
 public class OrderService {
 	
