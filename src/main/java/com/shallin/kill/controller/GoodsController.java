@@ -26,6 +26,19 @@ public class GoodsController {
 
     @Autowired
     GoodsService goodsService;
+//    @RequestMapping("/to_list")
+//    public String totest(Model model, MiaoshaUser miaoshaUser) {
+////        if(StringUtils.isEmpty(cookieToken)&&StringUtils.isEmpty(paramToken)){
+////            return "login";
+////        }
+////        String token = StringUtils.isEmpty(paramToken)? cookieToken:paramToken;
+////        MiaoshaUser miaoshaUser = miaoshaUserService.getByToken(response,token);
+////        model.addAttribute("user",miaoshaUser);
+//        model.addAttribute("user",miaoshaUser);
+//        List<GoodsVo> goodsList = goodsService.listGoodsVo();
+//        model.addAttribute("goodsList",goodsList);
+//        return "goods_list";
+//    }
     @RequestMapping("/to_list")
     public String toLogin(Model model, MiaoshaUser miaoshaUser) {
 //        if(StringUtils.isEmpty(cookieToken)&&StringUtils.isEmpty(paramToken)){

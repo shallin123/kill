@@ -5,12 +5,15 @@ import javax.validation.Valid;
 
 import com.shallin.kill.redis.RedisService;
 import com.shallin.kill.service.MiaoshaUserService;
+import com.shallin.kill.service.UserService;
 import com.shallin.kill.util.MD5Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.shallin.kill.result.Result;
 import com.shallin.kill.vo.LoginVo;
@@ -26,6 +29,9 @@ public class LoginController {
 
     @Autowired
     MiaoshaUserService miaoshaUserService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     RedisService redisService;
@@ -44,4 +50,17 @@ public class LoginController {
         miaoshaUserService.login(response, loginVo);
         return Result.success(true);
     }
+//        public Result<Boolean> doLogin(
+//                @RequestParam(value = "mobile",required = true) String mobile,
+//                @RequestParam(value = "password",required = true) String password
+//    ) {
+//        log.info(mobile+password);
+//        //登录
+//        log.info(MD5Util.formPassToDBPass(password,miaoshaUserService.getById(Long.parseLong(mobile)).getSalt()));
+////        miaoshaUserService.login(response, loginVo);
+//        if(MD5Util.formPassToDBPass(password,miaoshaUserService.getById(Long.parseLong(mobile)).getSalt()) == miaoshaUserService.getById(Long.parseLong(mobile)).getPassword()) {
+//            return Result.success(true);
+//        }
+//        return Result.success(true);
+//    }
 }
