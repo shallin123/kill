@@ -6,13 +6,13 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.imooc.miaosha.domain.MiaoshaOrder;
-import com.imooc.miaosha.domain.MiaoshaUser;
-import com.imooc.miaosha.redis.RedisService;
-import com.imooc.miaosha.service.GoodsService;
-import com.imooc.miaosha.service.MiaoshaService;
-import com.imooc.miaosha.service.OrderService;
-import com.imooc.miaosha.vo.GoodsVo;
+import com.shallin.kill.entity.MiaoshaOrder;
+import com.shallin.kill.entity.MiaoshaUser;
+import com.shallin.kill.redis.RedisService;
+import com.shallin.kill.service.GoodsService;
+import com.shallin.kill.service.MiaoshaService;
+import com.shallin.kill.service.OrderService;
+import com.shallin.kill.vo.GoodsVo;
 
 @Service
 public class MQReceiver {
