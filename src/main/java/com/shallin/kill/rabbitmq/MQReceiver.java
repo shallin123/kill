@@ -1,18 +1,17 @@
 package com.shallin.kill.rabbitmq;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.shallin.kill.entity.MiaoshaOrder;
-import com.shallin.kill.entity.MiaoshaUser;
+import com.shallin.kill.domain.MiaoshaOrder;
+import com.shallin.kill.domain.MiaoshaUser;
 import com.shallin.kill.redis.RedisService;
 import com.shallin.kill.service.GoodsService;
 import com.shallin.kill.service.MiaoshaService;
 import com.shallin.kill.service.OrderService;
 import com.shallin.kill.vo.GoodsVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MQReceiver {
@@ -20,18 +19,18 @@ public class MQReceiver {
 		private static Logger log = LoggerFactory.getLogger(MQReceiver.class);
 		
 		@Autowired
-		RedisService redisService;
+        RedisService redisService;
 		
 		@Autowired
-		GoodsService goodsService;
+        GoodsService goodsService;
 		
 		@Autowired
-		OrderService orderService;
+        OrderService orderService;
 		
 		@Autowired
-		MiaoshaService miaoshaService;
+        MiaoshaService miaoshaService;
 		
-		@RabbitListener(queues=MQConfig.MIAOSHA_QUEUE)
+		@RabbitListener(queues= MQConfig.MIAOSHA_QUEUE)
 		public void receive(String message) {
 			log.info("receive message:"+message);
 			MiaoshaMessage mm  = RedisService.stringToBean(message, MiaoshaMessage.class);

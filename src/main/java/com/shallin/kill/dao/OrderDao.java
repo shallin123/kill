@@ -1,11 +1,12 @@
 package com.shallin.kill.dao;
 
+import com.shallin.kill.domain.MiaoshaOrder;
+import com.shallin.kill.domain.OrderInfo;
 import org.apache.ibatis.annotations.*;
-
-import com.shallin.kill.entity.MiaoshaOrder;
-import com.shallin.kill.entity.OrderInfo;
+import org.springframework.stereotype.Repository;
 
 @Mapper
+@Repository
 public interface OrderDao {
 	
 	@Select("select * from miaosha_order where user_id=#{userId} and goods_id=#{goodsId}")
@@ -15,12 +16,12 @@ public interface OrderDao {
 			+ "#{userId}, #{goodsId}, #{goodsName}, #{goodsCount}, #{goodsPrice}, #{orderChannel},#{status},#{createDate} )")
 	@SelectKey(keyColumn="id", keyProperty="id", resultType=long.class, before=false, statement="select last_insert_id()")
 	public long insert(OrderInfo orderInfo);
-	
+
 	@Insert("insert into miaosha_order (user_id, goods_id, order_id)values(#{userId}, #{goodsId}, #{orderId})")
 	public int insertMiaoshaOrder(MiaoshaOrder miaoshaOrder);
 
 	@Select("select * from order_info where id = #{orderId}")
-	public OrderInfo getOrderById(@Param("orderId")long orderId);
+	public OrderInfo getOrderById(@Param("orderId") long orderId);
 
 	@Delete("delete from order_info")
 	public void deleteOrders();
@@ -28,4 +29,5 @@ public interface OrderDao {
 	@Delete("delete from miaosha_order")
 	public void deleteMiaoshaOrders();
 
+	
 }

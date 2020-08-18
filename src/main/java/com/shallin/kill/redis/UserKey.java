@@ -1,8 +1,5 @@
 package com.shallin.kill.redis;
 
-/**
- * @author shallin
- */
 public class UserKey extends BasePrefix{
 
 	private UserKey(String prefix) {

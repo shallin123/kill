@@ -1,6 +1,6 @@
 package com.shallin.kill.rabbitmq;
 
-import com.shallin.kill.entity.MiaoshaUser;
+import com.shallin.kill.domain.MiaoshaUser;
 
 public class MiaoshaMessage {
 	private MiaoshaUser user;

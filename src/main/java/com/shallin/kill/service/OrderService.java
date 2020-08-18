@@ -1,40 +1,36 @@
 package com.shallin.kill.service;
 
-import java.util.Date;
-
+import com.shallin.kill.dao.OrderDao;
+import com.shallin.kill.domain.MiaoshaOrder;
+import com.shallin.kill.domain.MiaoshaUser;
+import com.shallin.kill.domain.OrderInfo;
 import com.shallin.kill.redis.OrderKey;
 import com.shallin.kill.redis.RedisService;
+import com.shallin.kill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shallin.kill.dao.OrderDao;
-import com.shallin.kill.entity.MiaoshaOrder;
-import com.shallin.kill.entity.MiaoshaUser;
-import com.shallin.kill.entity.OrderInfo;
-import com.shallin.kill.vo.GoodsVo;
+import java.util.Date;
 
-/**
- * @author shallin
- */
 @Service
 public class OrderService {
-
+	
 	@Autowired
-	OrderDao orderDao;
-
+    OrderDao orderDao;
+	
 	@Autowired
-	RedisService redisService;
-
+    RedisService redisService;
+	
 	public MiaoshaOrder getMiaoshaOrderByUserIdGoodsId(long userId, long goodsId) {
 		//return orderDao.getMiaoshaOrderByUserIdGoodsId(userId, goodsId);
 		return redisService.get(OrderKey.getMiaoshaOrderByUidGid, ""+userId+"_"+goodsId, MiaoshaOrder.class);
 	}
-
+	
 	public OrderInfo getOrderById(long orderId) {
 		return orderDao.getOrderById(orderId);
 	}
-
+	
 
 	@Transactional
 	public OrderInfo createOrder(MiaoshaUser user, GoodsVo goods) {
@@ -54,9 +50,9 @@ public class OrderService {
 		miaoshaOrder.setOrderId(orderInfo.getId());
 		miaoshaOrder.setUserId(user.getId());
 		orderDao.insertMiaoshaOrder(miaoshaOrder);
-
+		
 		redisService.set(OrderKey.getMiaoshaOrderByUidGid, ""+user.getId()+"_"+goods.getId(), miaoshaOrder);
-
+		 
 		return orderInfo;
 	}
 
@@ -64,4 +60,5 @@ public class OrderService {
 		orderDao.deleteOrders();
 		orderDao.deleteMiaoshaOrders();
 	}
+
 }

@@ -1,13 +1,14 @@
 package com.shallin.kill.dao;
 
+import com.shallin.kill.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-
-import com.shallin.kill.entity.User;
+import org.springframework.stereotype.Repository;
 
 @Mapper
+@Repository
 public interface UserDao {
 	
 	@Select("select * from user where id = #{id}")

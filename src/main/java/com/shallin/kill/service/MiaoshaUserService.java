@@ -1,33 +1,32 @@
 package com.shallin.kill.service;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
+import com.shallin.kill.dao.MiaoshaUserDao;
+import com.shallin.kill.domain.MiaoshaUser;
+import com.shallin.kill.exception.GlobalException;
+import com.shallin.kill.redis.MiaoshaUserKey;
+import com.shallin.kill.redis.RedisService;
 import com.shallin.kill.result.CodeMsg;
+import com.shallin.kill.util.MD5Util;
+import com.shallin.kill.util.UUIDUtil;
+import com.shallin.kill.vo.LoginVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shallin.kill.dao.MiaoshaUserDao;
-import com.shallin.kill.entity.MiaoshaUser;
-import com.shallin.kill.exception.GlobalException;
-import com.shallin.kill.redis.MiaoshaUserKey;
-import com.shallin.kill.redis.RedisService;
-import com.shallin.kill.util.MD5Util;
-import com.shallin.kill.util.UUIDUtil;
-import com.shallin.kill.vo.LoginVo;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class MiaoshaUserService {
 	
 	
-	public static final String COOKIE_NAME_TOKEN = "token";
+	public static final String COOKI_NAME_TOKEN = "token";
 	
 	@Autowired
-	MiaoshaUserDao miaoshaUserDao;
+    MiaoshaUserDao miaoshaUserDao;
 	
 	@Autowired
-	RedisService redisService;
+    RedisService redisService;
 	
 	public MiaoshaUser getById(long id) {
 		//取缓存
@@ -60,7 +59,7 @@ public class MiaoshaUserService {
 		redisService.set(MiaoshaUserKey.token, token, user);
 		return true;
 	}
-	
+
 
 	public MiaoshaUser getByToken(HttpServletResponse response, String token) {
 		if(StringUtils.isEmpty(token)) {
@@ -75,7 +74,7 @@ public class MiaoshaUserService {
 	}
 	
 
-	public boolean login(HttpServletResponse response, LoginVo loginVo) {
+	public String login(HttpServletResponse response, LoginVo loginVo) {
 		if(loginVo == null) {
 			throw new GlobalException(CodeMsg.SERVER_ERROR);
 		}
@@ -94,14 +93,14 @@ public class MiaoshaUserService {
 			throw new GlobalException(CodeMsg.PASSWORD_ERROR);
 		}
 		//生成cookie
-		String token	 = UUIDUtil.uuid();
+		String token = UUIDUtil.uuid();
 		addCookie(response, token, user);
-		return true;
+		return token;
 	}
 	
 	private void addCookie(HttpServletResponse response, String token, MiaoshaUser user) {
 		redisService.set(MiaoshaUserKey.token, token, user);
-		Cookie cookie = new Cookie(COOKIE_NAME_TOKEN, token);
+		Cookie cookie = new Cookie(COOKI_NAME_TOKEN, token);
 		cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());
 		cookie.setPath("/");
 		response.addCookie(cookie);

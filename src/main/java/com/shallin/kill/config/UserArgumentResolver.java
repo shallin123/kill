@@ -1,8 +1,8 @@
 package com.shallin.kill.config;
 
-import com.shallin.kill.entity.MiaoshaUser;
+import com.shallin.kill.access.UserContext;
+import com.shallin.kill.domain.MiaoshaUser;
 import com.shallin.kill.service.MiaoshaUserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
@@ -11,41 +11,20 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 @Service
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
-    @Autowired
-    private MiaoshaUserService miaoshaUserService;
 
-    @Override
-    public boolean supportsParameter(MethodParameter methodParameter) {
-       Class<?> clazz = methodParameter.getParameterType();
-        return clazz == MiaoshaUser.class;
-    }
+	@Autowired
+    MiaoshaUserService userService;
+	
+	public boolean supportsParameter(MethodParameter parameter) {
+		Class<?> clazz = parameter.getParameterType();
+		return clazz== MiaoshaUser.class;
+	}
 
-    @Override
-    public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
-        HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
-        HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);
-        String paramToken = request.getParameter(MiaoshaUserService.COOKIE_NAME_TOKEN);
-        String cookieToken = getCookieValue(request, MiaoshaUserService.COOKIE_NAME_TOKEN);
-        if(StringUtils.isEmpty(cookieToken)&&StringUtils.isEmpty(paramToken)){
-            return null;
-        }
-        String token = StringUtils.isEmpty(paramToken)? cookieToken:paramToken;
-        return miaoshaUserService.getByToken(response,token);
-    }
+	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
+			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+		return UserContext.getUser();
+	}
 
-    private String getCookieValue(HttpServletRequest request, String cookieName) {
-        Cookie[] cookies = request.getCookies();
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals(cookieName)){
-                return cookie.getValue();
-            }
-        }
-        return null;
-    }
 }

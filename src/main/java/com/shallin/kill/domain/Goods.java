@@ -1,4 +1,4 @@
-package com.shallin.kill.entity;
+package com.shallin.kill.domain;
 
 import lombok.Data;
 

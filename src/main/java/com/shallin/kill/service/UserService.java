@@ -1,20 +1,16 @@
 package com.shallin.kill.service;
 
+import com.shallin.kill.dao.UserDao;
+import com.shallin.kill.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shallin.kill.dao.UserDao;
-import com.shallin.kill.entity.User;
-
-/**
- * @author shallin
- */
 @Service
 public class UserService {
 	
 	@Autowired
-	UserDao userDao;
+    UserDao userDao;
 	
 	public User getById(int id) {
 		 return userDao.getById(id);

@@ -3,21 +3,17 @@ package com.shallin.kill.redis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-/**
- * @author shallin
- */
 @Service
 public class RedisPoolFactory {
 
 	@Autowired
-	RedisConfig redisConfig;
+    RedisConfig redisConfig;
 	
 	@Bean
-	public JedisPool jedisPoolFactory() {
+	public JedisPool JedisPoolFactory() {
 		JedisPoolConfig poolConfig = new JedisPoolConfig();
 		poolConfig.setMaxIdle(redisConfig.getPoolMaxIdle());
 		poolConfig.setMaxTotal(redisConfig.getPoolMaxTotal());

@@ -1,12 +1,11 @@
 package com.shallin.kill.rabbitmq;
 
+import com.shallin.kill.redis.RedisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.shallin.kill.redis.RedisService;
 
 @Service
 public class MQSender {

@@ -1,10 +1,10 @@
 package com.shallin.kill.vo;
 
+import com.shallin.kill.domain.Goods;
+
 import java.util.Date;
 
-import com.shallin.kill.entity.Goods;
-
-public class GoodsVo extends Goods{
+public class GoodsVo extends Goods {
 	private Double miaoshaPrice;
 	private Integer stockCount;
 	private Date startDate;

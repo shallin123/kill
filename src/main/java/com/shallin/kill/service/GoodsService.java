@@ -1,22 +1,18 @@
 package com.shallin.kill.service;
 
-import java.util.List;
-
+import com.shallin.kill.dao.GoodsDao;
+import com.shallin.kill.domain.MiaoshaGoods;
+import com.shallin.kill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shallin.kill.dao.GoodsDao;
-import com.shallin.kill.entity.MiaoshaGoods;
-import com.shallin.kill.vo.GoodsVo;
+import java.util.List;
 
-/**
- * @author shallin
- */
 @Service
 public class GoodsService {
 	
 	@Autowired
-	GoodsDao goodsDao;
+    GoodsDao goodsDao;
 	
 	public List<GoodsVo> listGoodsVo(){
 		return goodsDao.listGoodsVo();
@@ -32,6 +28,7 @@ public class GoodsService {
 		int ret = goodsDao.reduceStock(g);
 		return ret > 0;
 	}
+
 	public void resetStock(List<GoodsVo> goodsList) {
 		for(GoodsVo goods : goodsList ) {
 			MiaoshaGoods g = new MiaoshaGoods();
@@ -40,5 +37,7 @@ public class GoodsService {
 			goodsDao.resetStock(g);
 		}
 	}
-
+	
+	
+	
 }
